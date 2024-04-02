@@ -4,6 +4,9 @@
 
 FROM debian:bookworm-slim
 LABEL maintainer="Nokia"
+LABEL org.opencontainers.image.source=https://github.com/nokia/corteca-toolchain
+LABEL org.opencontainers.image.description="Nokia Corteca Toolchain images"
+LABEL org.opencontainers.image.licenses=BSD-3-Clause
 
 ARG BUILDROOT_VERSION=2023.02.1
 ARG PARALLEL_PROCS=4

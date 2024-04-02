@@ -1,0 +1,39 @@
+{
+  "annotations": {
+    "com.nokia.app_name": "helloworld",
+    "com.nokia.app_version": "1.2.0",
+    "com.nokia.unprivileged": false,
+    "com.nokia.embedded_rootfs": true,
+    "com.nokia.embedded_package": {
+      "name": "rootfs.tar.gz",
+      "type": "tar"
+    }
+  },
+  "hostname": "helloworld",
+  "config": {
+    "Cmd": [
+      "/bin/helloworld"
+    ]
+  },
+  "linux": {
+    "resources": {
+      "cpu": {
+        "quota": "4",
+        "period": "100"
+      }
+    }
+  },
+  "mounts": [
+    {
+      "destination": "/opt",
+      "source": "/var/run/ubus-session",
+      "options": [
+        "rbind",
+        "rw"
+      ]
+    }
+  ],
+  "network": {
+    "type": "share"
+  }
+}
