@@ -19,13 +19,12 @@ If this fails, please follow the installation procedure for your OS.
 
 ### Corteca Toolchains
 
-Until we have the images uploaded to a container registry, we need to import them from files. You need to have the Corteca Toolchain image files [`corteca-toolchain-armv7-23.12.1.tar.bz2` and `corteca-toolchain-armv8-23.12.1.tar.bz2`]. For our examples, we will use `corteca-toolchain-armv8` version `23.12.1`.
+Currently there are two flavors of the Corteca Toolchain depending on the target CPU architecure
 
-Import the relative toolchain into your local docker instance
+- `ghcr.io/nokia/corteca-toolchain-armv7:23.12.1`
+- `ghcr.io/nokia/corteca-toolchain-armv8:23.12.1`
 
-```shell
-docker load --input corteca-toolchain-armv8-23.12.1.tar.bz2
-```
+For our examples, we will use `corteca-toolchain-armv8` version `23.12.1`.
 
 ## Toolchain functionality
 
@@ -75,7 +74,7 @@ docker run --rm -it -u "$(id -u):$(id -g)" \
     -v ./:/app \
     -v ./custom.config:/buildroot/.config \
     -e REBUILD_BUILDROOT="yes" \
-    corteca-toolchain-armv8:23.12.1
+    ghcr.io/nokia/corteca-toolchain-armv8:23.12.1
 ```
 
 This would take longer, since buildroot will be compiled first and then your application.

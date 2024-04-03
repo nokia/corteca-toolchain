@@ -195,7 +195,7 @@ If everything is in place you can use the corteca toolchain images to build your
 ### Generating Container Artifact
 
 ```shell
-docker run -u "$(id -u):$(id -g)" -v ./:/app corteca-toolchain-armv8:23.12.1
+docker run -u "$(id -u):$(id -g)" -v ./:/app ghcr.io/nokia/corteca-toolchain-armv8:23.12.1
 ```
 
 Check `/app/build/` directory for all the generated artifacts and `/app/dist/` for the container packages.
@@ -205,7 +205,7 @@ Check `/app/build/` directory for all the generated artifacts and `/app/dist/` f
 All artifacts generated under `/app/dist/` and `/app/build/` are ignored by git, but you can always clean them up by running the following command
 
 ```shell
-docker run -u "$(id -u):$(id -g)" -w /app -v ./:/app corteca-toolchain-armv8:23.12.1 nokia_toolchain distclean"
+docker run -u "$(id -u):$(id -g)" -w /app -v ./:/app ghcr.io/nokia/corteca-toolchain-armv8:23.12.1
 ```
 
 ## VSCode DevContainers
