@@ -1,6 +1,4 @@
----
-title: Sample Container Application v23.12.1
----
+# Sample Container Application v23.12.1
 
 This is a sample hello world application used to demonstrate the Corteca tooolchain functionality
 
@@ -10,29 +8,29 @@ For your container application, the following structure shows the recommended la
 
 | name | Description |
 | ---- | ----------- |
-| .devcontainer/ | The directory with the VSCode DevContainer plugin configuration files for the toolchains |
-| build/ | Directory for the compiled/generated artifacts. Files that will be create by make will end up in here |
-| dist/ | Directory for the generated compressed container application artifacts. |
-| src/ | Directory with the source code of the application |
-| target/ | Directory for files that we need to copy `as is` to the container (e.g: configuration files, precompiled binaries, etc. reside in here) |
-| tests/ | Functional and product testing scripts |
-| ADF | Application Description File (json file), used to describe the content in the tarball and the application runtime environment requirements |
-| Makefile | The main makefile that is used to invoke the scripts needed to build the app. In gerneral it will invoke the `Makefile` in `src/` directory |
-| README.md | Readme of the application (this file) |
+| `.devcontainer/` | The directory with the VSCode DevContainer plugin configuration files for the toolchains |
+| `build/` | Directory for the compiled/generated artifacts. Files that will be create by make will end up in here |
+| `dist/` | Directory for the generated compressed container application artifacts. |
+| `src/` | Directory with the source code of the application |
+| `target/` | Directory for files that we need to copy `as is` to the container (e.g: configuration files, precompiled binaries, etc. reside in here) |
+| `tests/` | Functional and product testing scripts |
+| `ADF` | Application Description File (json file), used to describe the content in the tarball and the application runtime environment requirements |
+| `Makefile` | The main makefile that is used to invoke the scripts needed to build the app. In gerneral it will invoke the `Makefile` in `src/` directory |
+| `README.md` | Readme of the application (this file) |
 
 In your host you must have a directory that includes the ADF file of your application and a directory named `src/` with the source code of your application. Inside `src/` you must have a Makefile that can compile your application.
 
 ### build/
 
-Compiled/generated artifacts will be created in here.
+Compiled/generated artifacts will be created in here. `<ARCH>` can be one of `armv7` or `armv8`.
 
 | name | Description |
 | ---- | ----------- |
-| build/`ARCH`/app | For each architecture there is a directory structure with the compiled binaries/libraries. This directory is copied recursively to the target rootfs |
-| build/`ARCH`/pkg | Directory with all the files of the application package |
-| build/`ARCH`/pkg/ADF | `ADF` file to be included in the application package (automatically copied here)|
-| build/`ARCH`/pkg/rootfs.tar.gz | Compressed contents of `build/ARCH/rootfs/` |
-| build/`ARCH`/rootfs/ | Extracted rootfs directory. All compiled/generated files and the files from `target/`, are copied here before genertating `build/ARCH/pkg/rootfs.tar.gz` |
+| `build/<ARCH>/app` | For each architecture there is a directory structure with the compiled binaries/libraries. This directory is copied recursively to the target rootfs |
+| `build/<ARCH>/pkg` | Directory with all the files of the application package |
+| `build/<ARCH>/pkg/ADF` | `ADF` file to be included in the application package (automatically copied here)|
+| `build/<ARCH>/pkg/rootfs.tar.gz` | Compressed contents of `build/<ARCH>/rootfs/` |
+| `build/<ARCH>/rootfs/` | Extracted rootfs directory. All compiled/generated files and the files from `target/`, are copied here before generating `build/<ARCH>/pkg/rootfs.tar.gz` |
 
 ### dist/
 
@@ -40,21 +38,11 @@ Compressed package of the containerized application for each architecture will b
 
 | name | Description |
 | ---- | ----------- |
-| dist/`APP`-`VERSION`-`ARCH`-rootfs.tar.gz | The complete container application package file for each architecture|
+| `dist/<APP>-<VERSION>-<ARCH>-rootfs.tar.gz` | The complete container application package file for each architecture|
 
 ### src/
 
-For a container application you need to have the source code of your application in folder `src/`
-
-| name | Description |
-| ---- | ----------- |
-| src/helloworld.c | Source code file |
-| . | all |
-| . | other |
-| . | files |
-| src/Makefile | The source code makefile, used to compile/build the application |
-
-If you don't use make for your application, then you need to adjust the main `Makefile` and set the `build` target accordingly.
+For a container application you need to have the source code of your application under folder `src/`. If you don't use make for your application, then you need to adjust the main `Makefile` and set the `build` target accordingly.
 
 ### target/
 
@@ -62,8 +50,9 @@ Directory for files that we need to copy `as is` to the container (e.g: configur
 
 | name | Description |
 | ---- | ----------- |
-| target/noarch/ | Directory for architecture agnostic files (e.g.: configuration files, scripts, static files, images/logos, etc). |
-| target/`ARCH`/ | Directory with precompiled or other files that are architecture specific. (e.g.: precompiled libraries, binaries, etc ) |
+| `target/noarch/` | Directory for architecture agnostic files (e.g.: configuration files, scripts, static files, images/logos, etc). |
+| `target/armv7/` | Directory with precompiled or other files that are specific to armv7 architecture. |
+| `target/armv8/` | Directory with precompiled or other files that are specific to armv8 architecture. |
 
 ### tests/
 
@@ -71,10 +60,10 @@ Functional and product testing scripts
 
 | name | Description |
 | ---- | ----------- |
-| tests/functional/         | Directory with all the files and scripts needed for functional testing of the application |
-| tests/functional/tests.sh | Script that runs all functional tests |
-| tests/product/            | Directory with all the files and scripts needed for product testing of the application |
-| tests/product/tests.sh    | Script that runs all product tests |
+| `tests/functional/`         | Directory with all the files and scripts needed for functional testing of the application |
+| `tests/functional/tests.sh` | Script that runs all functional tests |
+| `tests/product/`            | Directory with all the files and scripts needed for product testing of the application |
+| `tests/product/tests.sh`    | Script that runs all product tests |
 
 ### Makefile
 
@@ -198,14 +187,14 @@ If everything is in place you can use the corteca toolchain images to build your
 docker run -u "$(id -u):$(id -g)" -v ./:/app ghcr.io/nokia/corteca-toolchain-armv8:23.12.1
 ```
 
-Check `/app/build/` directory for all the generated artifacts and `/app/dist/` for the container packages.
+Check `build/` directory for all the generated artifacts and `dist/` for the container packages.
 
 ### Cleaning up
 
-All artifacts generated under `/app/dist/` and `/app/build/` are ignored by git, but you can always clean them up by running the following command
+All artifacts generated under `dist/` and `build/` are ignored by git, but you can always clean them up by running the following command
 
 ```shell
-docker run -u "$(id -u):$(id -g)" -w /app -v ./:/app ghcr.io/nokia/corteca-toolchain-armv8:23.12.1
+docker run -u "$(id -u):$(id -g)" -w /app -v ./:/app corteca-toolchain-armv8:23.12.1 nokia_toolchain distclean"
 ```
 
 ## VSCode DevContainers

@@ -1,21 +1,8 @@
----
-title: Corteca Development Platform Documentation v23.12.1
----
+# Corteca Development Platform Documentation v23.12.1
 
 ## Introduction
 
-This guide contains step-by-step instructions on how to generate a containerized application package for the Corteca ecosystem.
-
-### Docker
-
-The toolchains for compiling and building the containers require docker or a compatible container engine. This document assumes that you use docker.
-Make sure you have docker installed.
-
-```shell
-docker --version
-```
-
-If this fails, please follow the installation procedure for your OS.
+This guide contains step-by-step instructions on how to generate a containerized application package for the Corteca ecosystem. You need to have Docker Desktop or Docker Engine installed.
 
 ### Corteca Toolchains
 
