@@ -1,7 +1,7 @@
 {
   "annotations": {
     "com.nokia.app_name": "helloworld",
-    "com.nokia.app_version": "1.2.0",
+    "com.nokia.app_version": "1.0.0",
     "com.nokia.unprivileged": false,
     "com.nokia.embedded_rootfs": true,
     "com.nokia.embedded_package": {

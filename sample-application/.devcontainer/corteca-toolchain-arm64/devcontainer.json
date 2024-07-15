@@ -1,0 +1,14 @@
+{
+  "name": "corteca-toolchain-arm64",
+  "image": "ghcr.io/nokia/corteca-toolchain",
+  "runArgs": [
+    "--platform=linux/arm64"
+  ],
+  "mounts": [
+    {
+      "source": "${localWorkspaceFolder}",
+      "target": "/app",
+      "type": "bind"
+    }
+  ]
+}
