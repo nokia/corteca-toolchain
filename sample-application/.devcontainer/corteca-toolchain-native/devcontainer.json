@@ -1,6 +1,6 @@
 {
-  "name": "corteca-toolchain-armv8",
-  "image": "ghcr.io/nokia/corteca-toolchain-armv8:23.12.1",
+  "name": "corteca-toolchain-native",
+  "image": "ghcr.io/nokia/corteca-toolchain",
   "mounts": [
     {
       "source": "${localWorkspaceFolder}",
